@@ -1,0 +1,7 @@
+namespace: '{{ .Release.Namespace }}'
+
+resources:
+  - git@github.com:kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/deploy/kubernetes/overlays/stable-1-24
+
+transformers:
+  - common-labels.yaml
