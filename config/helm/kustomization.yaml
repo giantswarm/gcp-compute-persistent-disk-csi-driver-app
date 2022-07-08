@@ -5,3 +5,6 @@ resources:
 
 transformers:
   - common-labels.yaml
+
+patchesStrategicMerge:
+  - delete-windows.yaml

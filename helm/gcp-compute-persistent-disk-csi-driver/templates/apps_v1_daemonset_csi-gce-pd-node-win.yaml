@@ -6,9 +6,9 @@ metadata:
     app.giantswarm.io/commit: '{{ .Values.project.commit }}'
     app.kubernetes.io/instance: '{{ .Release.Name }}'
     app.kubernetes.io/managed-by: '{{ .Release.Service }}'
-    app.kubernetes.io/name: cluster-api
+    app.kubernetes.io/name: gcp-compute-persistent-disk-csi-driver
     app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
-    helm.sh/chart: cluster-api
+    helm.sh/chart: gcp-compute-persistent-disk-csi-driver
   name: csi-gce-pd-node-win
   namespace: '{{ .Release.Namespace }}'
 spec:

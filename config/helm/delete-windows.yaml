@@ -1,0 +1,6 @@
+---
+$patch: delete
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: csi-gce-pd-node-psp-win
