@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    app.giantswarm.io/branch: '{{ .Values.project.branch }}'
+    app.giantswarm.io/commit: '{{ .Values.project.commit }}'
+    app.kubernetes.io/instance: '{{ .Release.Name }}'
+    app.kubernetes.io/managed-by: '{{ .Release.Service }}'
+    app.kubernetes.io/name: cluster-api
+    app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
+    helm.sh/chart: cluster-api
+  name: csi-gce-pd-node
+  namespace: '{{ .Release.Namespace }}'
+spec:
+  selector:
+    matchLabels:
+      app: gcp-compute-persistent-disk-csi-driver
+  template:
+    metadata:
+      labels:
+        app: gcp-compute-persistent-disk-csi-driver
+    spec:
+      containers:
+      - args:
+        - --v=5
+        - --csi-address=/csi/csi.sock
+        - --kubelet-registration-path=/var/lib/kubelet/plugins/pd.csi.storage.gke.io/csi.sock
+        env:
+        - name: KUBE_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.5.0
+        livenessProbe:
+          exec:
+            command:
+            - /csi-node-driver-registrar
+            - --kubelet-registration-path=/var/lib/kubelet/plugins/pd.csi.storage.gke.io/csi.sock
+            - --mode=kubelet-registration-probe
+          initialDelaySeconds: 3
+        name: csi-driver-registrar
+        volumeMounts:
+        - mountPath: /csi
+          name: plugin-dir
+        - mountPath: /registration
+          name: registration-dir
+      - args:
+        - --v=5
+        - --endpoint=unix:/csi/csi.sock
+        - --run-controller-service=false
+        image: k8s.gcr.io/cloud-provider-gcp/gcp-compute-persistent-disk-csi-driver:v1.7.1
+        name: gce-pd-driver
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/lib/kubelet
+          mountPropagation: Bidirectional
+          name: kubelet-dir
+        - mountPath: /csi
+          name: plugin-dir
+        - mountPath: /dev
+          name: device-dir
+        - mountPath: /etc/udev
+          name: udev-rules-etc
+        - mountPath: /lib/udev
+          name: udev-rules-lib
+        - mountPath: /run/udev
+          name: udev-socket
+        - mountPath: /sys
+          name: sys
+      hostNetwork: true
+      nodeSelector:
+        kubernetes.io/os: linux
+      priorityClassName: csi-gce-pd-node
+      serviceAccountName: csi-gce-pd-node-sa
+      tolerations:
+      - operator: Exists
+      volumes:
+      - hostPath:
+          path: /var/lib/kubelet/plugins_registry/
+          type: Directory
+        name: registration-dir
+      - hostPath:
+          path: /var/lib/kubelet
+          type: Directory
+        name: kubelet-dir
+      - hostPath:
+          path: /var/lib/kubelet/plugins/pd.csi.storage.gke.io/
+          type: DirectoryOrCreate
+        name: plugin-dir
+      - hostPath:
+          path: /dev
+          type: Directory
+        name: device-dir
+      - hostPath:
+          path: /etc/udev
+          type: Directory
+        name: udev-rules-etc
+      - hostPath:
+          path: /lib/udev
+          type: Directory
+        name: udev-rules-lib
+      - hostPath:
+          path: /run/udev
+          type: Directory
+        name: udev-socket
+      - hostPath:
+          path: /sys
+          type: Directory
+        name: sys

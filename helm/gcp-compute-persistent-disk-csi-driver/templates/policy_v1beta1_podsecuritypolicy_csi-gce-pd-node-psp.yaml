@@ -1,0 +1,34 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  labels:
+    app.giantswarm.io/branch: '{{ .Values.project.branch }}'
+    app.giantswarm.io/commit: '{{ .Values.project.commit }}'
+    app.kubernetes.io/instance: '{{ .Release.Name }}'
+    app.kubernetes.io/managed-by: '{{ .Release.Service }}'
+    app.kubernetes.io/name: cluster-api
+    app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
+    helm.sh/chart: cluster-api
+  name: csi-gce-pd-node-psp
+spec:
+  allowedHostPaths:
+  - pathPrefix: /var/lib/kubelet/plugins_registry/
+  - pathPrefix: /var/lib/kubelet
+  - pathPrefix: /var/lib/kubelet/plugins/pd.csi.storage.gke.io/
+  - pathPrefix: /dev
+  - pathPrefix: /etc/udev
+  - pathPrefix: /lib/udev
+  - pathPrefix: /run/udev
+  - pathPrefix: /sys
+  fsGroup:
+    rule: RunAsAny
+  hostNetwork: true
+  privileged: true
+  runAsUser:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  volumes:
+  - '*'

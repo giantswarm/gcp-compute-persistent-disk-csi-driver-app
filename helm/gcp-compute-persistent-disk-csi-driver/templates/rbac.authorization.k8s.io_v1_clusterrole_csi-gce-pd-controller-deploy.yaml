@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.giantswarm.io/branch: '{{ .Values.project.branch }}'
+    app.giantswarm.io/commit: '{{ .Values.project.commit }}'
+    app.kubernetes.io/instance: '{{ .Release.Name }}'
+    app.kubernetes.io/managed-by: '{{ .Release.Service }}'
+    app.kubernetes.io/name: cluster-api
+    app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
+    helm.sh/chart: cluster-api
+  name: csi-gce-pd-controller-deploy
+rules:
+- apiGroups:
+  - policy
+  resourceNames:
+  - csi-gce-pd-controller-psp
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
