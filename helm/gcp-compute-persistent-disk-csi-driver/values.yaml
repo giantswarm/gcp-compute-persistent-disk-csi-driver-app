@@ -1,12 +1,26 @@
 name: gcp-compute-persistent-disk-csi-driver
-serviceType: managed
 
 project:
   branch: "[[ .Branch ]]"
   commit: "[[ .SHA ]]"
 
 image:
-  registry: quay.io
-  name: giantswarm/gcp-compute-persistent-disk-csi-driver
-  tag: v0.0.1
   pullPolicy: IfNotPresent
+  registrar:
+    name: quay.io/giantswarm/csi-node-driver-registrar
+    tag: v2.5.0
+  driver:
+    name: quay.io/giantswarm/gcp-compute-persistent-disk-csi-driver
+    tag: v1.7.1
+  provisioner:
+    name: quay.io/giantswarm/csi-provisioner
+    tag: v3.1.0
+  attacher:
+    name: quay.io/giantswarm/csi-attacher
+    tag: v3.4.0
+  resizer:
+    name: quay.io/giantswarm/csi-resizer
+    tag: v1.4.0
+  snapshotter:
+    name: quay.io/giantswarm/csi-snapshotter
+    tag: v4.0.1
