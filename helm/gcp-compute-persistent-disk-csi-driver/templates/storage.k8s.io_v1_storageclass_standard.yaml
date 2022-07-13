@@ -1,0 +1,19 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  labels:
+    app.giantswarm.io/branch: '{{ .Values.project.branch }}'
+    app.giantswarm.io/commit: '{{ .Values.project.commit }}'
+    app.kubernetes.io/instance: '{{ .Release.Name }}'
+    app.kubernetes.io/managed-by: '{{ .Release.Service }}'
+    app.kubernetes.io/name: gcp-compute-persistent-disk-csi-driver
+    app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
+    helm.sh/chart: gcp-compute-persistent-disk-csi-driver
+  name: standard
+parameters:
+  fstype: ext4
+  type: pd-balanced
+provisioner: kubernetes.io/gce-pd
+volumeBindingMode: WaitForFirstConsumer
