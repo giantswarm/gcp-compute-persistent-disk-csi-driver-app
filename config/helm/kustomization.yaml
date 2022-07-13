@@ -2,6 +2,27 @@ namespace: '{{ .Release.Namespace }}'
 
 resources:
   - git@github.com:kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/deploy/kubernetes/overlays/stable-1-24
+  - credentials-secret.yaml
+
+images:
+  - name: k8s.gcr.io/sig-storage/csi-node-driver-registrar
+    newName: "{{.Values.image.registrar.name}}"
+    newTag: "{{.Values.image.registrar.tag}}"
+  - name: k8s.gcr.io/cloud-provider-gcp/gcp-compute-persistent-disk-csi-driver
+    newName: "{{ .Values.image.driver.name }}"
+    newTag: "{{ .Values.image.driver.tag }}"
+  - name: k8s.gcr.io/sig-storage/csi-provisioner
+    newName: "{{.Values.image.provisioner.name}}"
+    newTag: "{{.Values.image.provisioner.tag}}"
+  - name: k8s.gcr.io/sig-storage/csi-attacher
+    newName: "{{ .Values.image.attacher.name }}"
+    newTag: "{{ .Values.image.attacher.tag }}"
+  - name: k8s.gcr.io/sig-storage/csi-resizer
+    newName: "{{ .Values.image.resizer.name }}"
+    newTag: "{{ .Values.image.resizer.tag }}"
+  - name: k8s.gcr.io/sig-storage/csi-snapshotter
+    newName: "{{.Values.image.snapshotter.name}}"
+    newTag: "{{.Values.image.snapshotter.tag}}"
 
 transformers:
   - common-labels.yaml
