@@ -11,12 +11,12 @@ home: https://github.com/giantswarm/gcp-compute-persistent-disk-csi-driver-app
 
 # If you have an icon/logo, you should add it to https://github.com/giantswarm/web-assets
 # and set the final URL as a value here and uncomment.
-#icon: https://s.giantswarm.io/app-icons/example/1/light.svg
+# icon: https://s.giantswarm.io/app-icons/example/1/light.svg
 
 sources:
 - https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver
 version: 0.1.0-dev # [[ .Version ]] if you're using architect instead of app-build-suite
 annotations:
-  application.giantswarm.io/team: Hydra # used through .Chart.Annotations.team (not replaced automatically)
-  branch: my-branch # Used through .Chart.Annotations.branch (This is not replaced automatically)
-  commit: f00bar # Used through .Chart.Annotations.commit (This is not replaced automatically)
+  application.giantswarm.io/team: Hydra  # used through .Chart.Annotations.team (not replaced automatically)
+  branch: my-branch  # Used through .Chart.Annotations.branch (This is not replaced automatically)
+  commit: f00bar  # Used through .Chart.Annotations.commit (This is not replaced automatically)
