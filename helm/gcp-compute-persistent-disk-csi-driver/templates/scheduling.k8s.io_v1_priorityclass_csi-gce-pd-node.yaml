@@ -1,0 +1,16 @@
+apiVersion: scheduling.k8s.io/v1
+description: This priority class should be used for the GCE PD CSI driver node deployment
+  only.
+globalDefault: false
+kind: PriorityClass
+metadata:
+  labels:
+    app.giantswarm.io/branch: '{{ .Values.project.branch }}'
+    app.giantswarm.io/commit: '{{ .Values.project.commit }}'
+    app.kubernetes.io/instance: '{{ .Release.Name }}'
+    app.kubernetes.io/managed-by: '{{ .Release.Service }}'
+    app.kubernetes.io/name: gcp-compute-persistent-disk-csi-driver
+    app.kubernetes.io/version: '{{ .Chart.AppVersion }}'
+    helm.sh/chart: gcp-compute-persistent-disk-csi-driver
+  name: csi-gce-pd-node
+value: 900001000
