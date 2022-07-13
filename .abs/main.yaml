@@ -1,5 +1,0 @@
-replace-chart-version-with-git: true
-replace-app-version-with-git: true
-generate-metadata: true
-chart-dir: ./helm/gcp-compute-persistent-disk-csi-driver
-destination: ./build
