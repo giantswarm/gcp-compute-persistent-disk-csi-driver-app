@@ -1,4 +1,5 @@
 name: gcp-compute-persistent-disk-csi-driver
+serviceType: managed
 
 project:
   branch: "[[ .Branch ]]"
