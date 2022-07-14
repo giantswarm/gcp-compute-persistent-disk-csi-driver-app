@@ -26,6 +26,15 @@ spec:
       containers:
       - args:
         - --v=5
+        - --endpoint=unix:/csi/csi.sock
+        env: []
+        image: '{{ .Values.image.driver.name }}:{{ .Values.image.driver.tag }}'
+        name: gce-pd-driver
+        volumeMounts:
+        - mountPath: /csi
+          name: socket-dir
+      - args:
+        - --v=5
         - --csi-address=/csi/csi.sock
         - --feature-gates=Topology=true
         - --http-endpoint=:22011
@@ -132,20 +141,6 @@ spec:
         volumeMounts:
         - mountPath: /csi
           name: socket-dir
-      - args:
-        - --v=5
-        - --endpoint=unix:/csi/csi.sock
-        env:
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /etc/cloud-sa/cloud-sa.json
-        image: '{{ .Values.image.driver.name }}:{{ .Values.image.driver.tag }}'
-        name: gce-pd-driver
-        volumeMounts:
-        - mountPath: /csi
-          name: socket-dir
-        - mountPath: /etc/cloud-sa
-          name: cloud-sa-volume
-          readOnly: true
       hostNetwork: true
       nodeSelector:
         kubernetes.io/os: linux
@@ -154,6 +149,3 @@ spec:
       volumes:
       - emptyDir: {}
         name: socket-dir
-      - name: cloud-sa-volume
-        secret:
-          secretName: cloud-sa

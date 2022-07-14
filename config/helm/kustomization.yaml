@@ -31,3 +31,4 @@ transformers:
 
 patchesStrategicMerge:
   - delete-windows.yaml
+  - delete-credentials.yaml
