@@ -9,6 +9,6 @@ fieldSpecs:
   - path: spec/selector/matchLabels
     create: true
     kind: Deployment
-  - path: spec/template/metadata
+  - path: spec/template/metadata/labels
     create: true
     kind: Deployment

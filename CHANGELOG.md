@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add gcp workload identity annotation to `ServiceAccount`.
+- Add support for using gcp workload identity.
 
 ## [0.2.1] - 2022-07-14
 
