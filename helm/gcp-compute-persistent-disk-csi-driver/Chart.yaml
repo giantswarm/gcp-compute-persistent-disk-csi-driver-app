@@ -14,3 +14,5 @@ annotations:
 
 sources:
 - https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver
+
+icon: https://s.giantswarm.io/app-icons/gcp/1/light.svg
