@@ -1,0 +1,12 @@
+---
+apiVersion: builtin
+kind: AnnotationsTransformer
+metadata:
+  name: common-annotations
+annotations:
+  giantswarm.io/gcp-workload-identity-pool-id: '{{.Values.workloadIdentityPoolId}}'
+fieldSpecs:
+  - path: metadata/annotations
+    create: true
+    version: v1
+    kind: ServiceAccount
