@@ -27,6 +27,7 @@ images:
 transformers:
   - common-labels.yaml
   - workload-identity-annotation.yaml
+  - workload-identity-label.yaml
 
 patchesStrategicMerge:
   - delete-windows.yaml

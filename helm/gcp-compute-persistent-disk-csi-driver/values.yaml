@@ -26,4 +26,4 @@ image:
     name: quay.io/giantswarm/csi-snapshotter
     tag: v4.0.1
 
-workloadIdentityPoolId: ""
+gcpProject: ""

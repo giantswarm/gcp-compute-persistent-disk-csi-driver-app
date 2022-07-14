@@ -16,8 +16,10 @@ spec:
   selector:
     matchLabels:
       app: gcp-compute-persistent-disk-csi-driver
+      giantswarm.io/gcp-workload-identity: enabled
   template:
     metadata:
+      giantswarm.io/gcp-workload-identity: enabled
       labels:
         app: gcp-compute-persistent-disk-csi-driver
     spec:

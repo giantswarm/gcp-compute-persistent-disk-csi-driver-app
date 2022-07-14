@@ -2,9 +2,9 @@
 apiVersion: builtin
 kind: AnnotationsTransformer
 metadata:
-  name: common-annotations
+  name: workload-identity-annotation
 annotations:
-  giantswarm.io/gcp-workload-identity-pool-id: '{{.Values.workloadIdentityPoolId}}'
+  giantswarm.io/gcp-workload-identity-pool-id: '{{.Values.gcpProject}}.svc.id.goog'
 fieldSpecs:
   - path: metadata/annotations
     create: true
