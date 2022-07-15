@@ -3,7 +3,6 @@ namespace: '{{ .Release.Namespace }}'
 resources:
   - git@github.com:kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/deploy/kubernetes/overlays/stable-1-24
   - storage-classes.yaml
-  - credentials-secret.yaml
 
 images:
   - name: k8s.gcr.io/sig-storage/csi-node-driver-registrar
@@ -27,6 +26,9 @@ images:
 
 transformers:
   - common-labels.yaml
+  - workload-identity-annotation.yaml
+  - workload-identity-label.yaml
 
 patchesStrategicMerge:
   - delete-windows.yaml
+  - delete-credentials.yaml

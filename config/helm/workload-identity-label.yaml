@@ -1,0 +1,14 @@
+---
+apiVersion: builtin
+kind: LabelTransformer
+metadata:
+  name: workload-identity-label
+labels:
+  giantswarm.io/gcp-workload-identity: "enabled"
+fieldSpecs:
+  - path: spec/selector/matchLabels
+    create: true
+    kind: Deployment
+  - path: spec/template/metadata/labels
+    create: true
+    kind: Deployment
