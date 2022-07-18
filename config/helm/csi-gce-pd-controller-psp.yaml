@@ -1,0 +1,32 @@
+---
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: csi-gce-pd-controller-psp
+spec:
+  allowPrivilegeEscalation: false
+  fsGroup:
+    ranges:
+      - max: 65535
+        min: 1
+    rule: MustRunAs
+  runAsUser:
+    ranges:
+      - max: 65535
+        min: 1000
+    rule: MustRunAs
+  hostNetwork: true
+  hostPorts:
+    - min: 22010
+      max: 22015
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    ranges:
+      - max: 65535
+        min: 1
+    rule: MustRunAs
+  volumes:
+    - secret
+    - configMap
+    - emptyDir
