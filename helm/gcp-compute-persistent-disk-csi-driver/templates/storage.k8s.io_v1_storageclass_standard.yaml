@@ -13,7 +13,7 @@ metadata:
     helm.sh/chart: gcp-compute-persistent-disk-csi-driver
   name: standard
 parameters:
-  fstype: ext4
+  csi.storage.k8s.io/fstype: ext4
   type: pd-balanced
-provisioner: kubernetes.io/gce-pd
+provisioner: pd.csi.storage.gke.io
 volumeBindingMode: WaitForFirstConsumer
