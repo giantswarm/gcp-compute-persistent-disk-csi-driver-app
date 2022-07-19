@@ -11,15 +11,29 @@ metadata:
     helm.sh/chart: gcp-compute-persistent-disk-csi-driver
   name: csi-gce-pd-controller-psp
 spec:
+  allowPrivilegeEscalation: false
   fsGroup:
-    rule: RunAsAny
+    ranges:
+    - max: 65535
+      min: 1
+    rule: MustRunAs
   hostNetwork: true
+  hostPorts:
+  - max: 22015
+    min: 22010
   runAsUser:
-    rule: RunAsAny
+    ranges:
+    - max: 65535
+      min: 1000
+    rule: MustRunAs
   seLinux:
     rule: RunAsAny
   supplementalGroups:
-    rule: RunAsAny
+    ranges:
+    - max: 65535
+      min: 1
+    rule: MustRunAs
   volumes:
-  - emptyDir
   - secret
+  - configMap
+  - emptyDir

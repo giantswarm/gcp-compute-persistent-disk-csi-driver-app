@@ -32,3 +32,4 @@ transformers:
 patchesStrategicMerge:
   - delete-windows.yaml
   - delete-credentials.yaml
+  - csi-gce-pd-controller-psp.yaml
