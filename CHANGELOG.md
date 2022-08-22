@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Added
+
+- `giantswarm.io/gcp-workload-identity-pool-id` and `giantswarm.io/gcp-identity-provider` annotations and helm values
+
+## Fixed
+
+- Allow `projected` volume type in controller PSP, needed for for workload identity
+- Use `7a126c25-gs1` image tag. This image contains necessary dependency updates for workload identity
+
 ## [0.4.0] - 2022-07-19
 
 ### Fixed

@@ -12,7 +12,7 @@ image:
     tag: v2.5.0
   driver:
     name: quay.io/giantswarm/gcp-compute-persistent-disk-csi-driver
-    tag: v1.7.1
+    tag: 7a126c25-gs1
   provisioner:
     name: quay.io/giantswarm/csi-provisioner
     tag: v3.1.0
@@ -27,3 +27,5 @@ image:
     tag: v4.0.1
 
 gcpProject: ""
+gcpServiceAccount: ""
+gkeHubMembershiName: ""
