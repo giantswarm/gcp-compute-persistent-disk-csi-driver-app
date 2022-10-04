@@ -7,13 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## Added
-
-- `giantswarm.io/gcp-workload-identity-pool-id` and `giantswarm.io/gcp-identity-provider` annotations and helm values
-
 ## Fixed
 
 - Allow `projected` volume type in controller PSP, needed for for workload identity
+
+### Changed
+
+- Bumped `gcp-compute-persistent-disk-csi-driver` image to v1.8.0
+- Set `giantswarm.io/gcp-service-account` annotation
+- Remove `giantswarm.io/gcp-workload-identity-pool-id` annotation
+
 
 ## [0.4.0] - 2022-07-19
 

@@ -12,7 +12,7 @@ image:
     tag: v2.5.0
   driver:
     name: quay.io/giantswarm/gcp-compute-persistent-disk-csi-driver
-    tag: v1.7.1
+    tag: v1.8.0
   provisioner:
     name: quay.io/giantswarm/csi-provisioner
     tag: v3.1.0
