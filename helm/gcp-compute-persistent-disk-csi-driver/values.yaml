@@ -26,14 +26,4 @@ image:
     name: quay.io/giantswarm/csi-snapshotter
     tag: v4.0.1
 
-# gcpServiceAccount
-# The GCP Service Account ID to use when running on gcp, using workload identity for authentication.
-gcpServiceAccount: ""
-
-# gcpWorkloadIdentityPoolID
-# The workload identity pool ID for the cluster where the app will run. It's of the form '$gcpProject.svc.id.goog'.
-gcpWorkloadIdentityPoolID: ""
-
-# gcpIdentityProvider
-# The workload identity identity provider for the cluster where the app will run.
-gcpIdentityProvider: ""
+gcpProject: ""
