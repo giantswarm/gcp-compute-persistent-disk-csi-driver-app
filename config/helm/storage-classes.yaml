@@ -10,6 +10,7 @@ parameters:
   type: pd-balanced
   csi.storage.k8s.io/fstype: ext4
 volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -20,3 +21,4 @@ parameters:
   type: pd-ssd
   csi.storage.k8s.io/fstype: ext4
 volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
