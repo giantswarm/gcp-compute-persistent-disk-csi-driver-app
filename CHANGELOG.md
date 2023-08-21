@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Change team annotation to phoenix from hydra
+
 ## [0.5.1] - 2022-10-19
 
 ### Changed

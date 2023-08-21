@@ -9,7 +9,7 @@ home: https://github.com/giantswarm/gcp-compute-persistent-disk-csi-driver-app
 apiVersion: v1
 
 annotations:
-  application.giantswarm.io/team: "hydra"
+  application.giantswarm.io/team: "phoenix"
   config.giantswarm.io/version: 1.x.x
 
 sources:
